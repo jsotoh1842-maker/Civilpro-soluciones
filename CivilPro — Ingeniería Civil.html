@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)file:///C:/Users/USUARIO/Downloads/structurapro_v3.html#biblioteca -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StructuraPro — Ingeniería Civil</title>
+<link href="./CivilPro — Ingeniería Civil_files/css2" rel="stylesheet">
+<script src="./CivilPro — Ingeniería Civil_files/xlsx.full.min.js.descarga"></script>
+<style>
+:root{
+  --ink:#0d1117;--ink2:#1c2333;--ink3:#2d3748;
+  --steel:#8fa3b8;--steel2:#b0c4d8;
+  --accent:#e8a030;--accent2:#f5c842;
+  --surface:#f4f1eb;--surface2:#ede9e0;
+  --white:#fefcf8;--danger:#c0392b;--success:#1a6b3c;
+  --radius:4px;--radius-lg:10px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--ink);font-size:15px;line-height:1.65;overflow-x:hidden;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:60px;border-bottom:2px solid var(--accent);}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;color:var(--white);letter-spacing:-.5px;}
+.nav-logo span{color:var(--accent);}
+.nav-links{display:flex;align-items:center;gap:1.5rem;}
+.nav-links a{font-size:12px;font-weight:500;color:var(--steel2);text-decoration:none;letter-spacing:.5px;text-transform:uppercase;transition:color .2s;}
+.nav-links a:hover{color:var(--accent);}
+.nav-admin-btn{background:rgba(232,160,48,.15);border:1px solid rgba(232,160,48,.3);color:var(--accent);font-size:12px;font-weight:600;padding:5px 14px;border-radius:var(--radius);cursor:pointer;letter-spacing:.5px;font-family:'DM Sans',sans-serif;transition:all .2s;}
+.nav-admin-btn:hover{background:rgba(232,160,48,.28);}
+.nav-admin-btn.unlocked{background:rgba(26,107,60,.2);border-color:rgba(26,107,60,.4);color:#4ade80;}
+
+/* HERO */
+.hero{background:var(--ink);padding:5rem 2.5rem 4rem;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-80px;right:-120px;width:500px;height:500px;background:radial-gradient(circle,rgba(232,160,48,.1) 0%,transparent 70%);border-radius:50%;pointer-events:none;}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;max-width:1100px;margin:0 auto;align-items:center;}
+.hero-tag{display:inline-block;background:rgba(232,160,48,.15);color:var(--accent);font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:2px;border:1px solid rgba(232,160,48,.3);margin-bottom:1.5rem;}
+.hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:44px;line-height:1.1;letter-spacing:-1px;color:var(--white);margin-bottom:1.25rem;}
+.hero h1 em{color:var(--accent);font-style:normal;}
+.hero p{color:var(--steel);font-size:15px;line-height:1.7;margin-bottom:2rem;max-width:440px;}
+.btn-group{display:flex;gap:12px;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;border:none;transition:all .2s;text-decoration:none;letter-spacing:.3px;}
+.btn-primary{background:var(--accent);color:var(--ink);font-weight:600;}
+.btn-primary:hover{background:var(--accent2);transform:translateY(-1px);}
+.btn-outline{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.25);}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);}
+.hero-stats{display:flex;gap:2rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.08);}
+.stat-num{font-family:'Syne',sans-serif;font-size:26px;font-weight:700;color:var(--accent);}
+.stat-lbl{font-size:11px;color:var(--steel);text-transform:uppercase;letter-spacing:1px;}
+.hero-card{background:var(--ink2);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-lg);padding:1.75rem;position:relative;}
+.hero-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:var(--radius-lg) var(--radius-lg) 0 0;}
+.card-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--steel);margin-bottom:1.25rem;}
+.mini-row{display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(255,255,255,.04);border-radius:var(--radius);margin-bottom:8px;border:1px solid rgba(255,255,255,.06);}
+.mini-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.mini-row span{font-size:13px;color:var(--steel2);flex:1;}
+.mini-row strong{font-size:13px;color:var(--accent);}
+
+/* SECTION COMMON */
+.sec{padding:4rem 2.5rem;}
+.sec-dark{background:var(--ink);}
+.sec-light{background:var(--surface);}
+.sec-white{background:var(--white);}
+.sec-tag{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:.6rem;}
+.sec-h2{font-family:'Syne',sans-serif;font-size:30px;font-weight:700;letter-spacing:-.5px;margin-bottom:.75rem;}
+.sec-p{color:var(--ink3);max-width:520px;}
+.sec-p-dark{color:var(--steel);}
+.sec-wrap{max-width:1100px;margin:0 auto;}
+.sec-header{margin-bottom:2.5rem;}
+
+/* ── BIBLIOTECA PÚBLICA ─────────────────────────────────── */
+#biblioteca{padding:4rem 2.5rem;background:var(--white);}
+.lib-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem;}
+.lib-card{background:var(--white);border:1px solid var(--surface2);border-radius:var(--radius-lg);padding:1.25rem 1.5rem;transition:all .25s;position:relative;overflow:hidden;}
+.lib-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--accent);}
+.lib-card:hover{border-color:rgba(232,160,48,.4);transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,0,0,.07);}
+.lib-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:.75rem;}
+.lib-file-icon{width:42px;height:42px;background:var(--ink);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;}
+.lib-file-info{flex:1;}
+.lib-file-name{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--ink);margin-bottom:3px;word-break:break-word;}
+.lib-file-date{font-size:11px;color:var(--steel);}
+.lib-badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:.75rem;}
+.lib-badge{font-size:10px;font-weight:600;padding:2px 8px;border-radius:2px;text-transform:uppercase;letter-spacing:.5px;}
+.lb-sheets{background:rgba(232,160,48,.12);color:#b07818;border:1px solid rgba(232,160,48,.2);}
+.lb-rows{background:rgba(56,107,61,.1);color:#1a6b3c;border:1px solid rgba(56,107,61,.2);}
+.lb-cols{background:rgba(52,98,168,.1);color:#185FA5;border:1px solid rgba(52,98,168,.2);}
+.lb-size{background:rgba(100,100,100,.1);color:#555;border:1px solid rgba(100,100,100,.15);}
+.lib-desc{font-size:12px;color:var(--ink3);line-height:1.5;margin-bottom:1rem;}
+.lib-actions{display:flex;gap:8px;}
+.lib-btn-view{flex:1;padding:8px 0;background:var(--ink);color:var(--accent);border:none;border-radius:var(--radius);font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;letter-spacing:.5px;}
+.lib-btn-view:hover{background:var(--ink2);}
+.lib-btn-dl{padding:8px 14px;border-radius:var(--radius);font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;border:1px solid;}
+.lib-btn-dl.locked{background:rgba(192,57,43,.08);color:#c0392b;border-color:rgba(192,57,43,.2);cursor:not-allowed;}
+.lib-btn-dl.unlocked-dl{background:rgba(26,107,60,.1);color:#1a6b3c;border-color:rgba(26,107,60,.25);}
+.lib-btn-dl.unlocked-dl:hover{background:rgba(26,107,60,.2);}
+.lib-empty{text-align:center;padding:4rem 2rem;color:var(--steel);}
+.lib-empty-icon{font-size:48px;margin-bottom:1rem;}
+.lib-empty p{font-size:14px;}
+
+/* LOCK SECTION */
+#lock-section{padding:4rem 2.5rem;background:var(--surface);border-bottom:1px solid var(--surface2);display:none;}
+.lock-wrap{max-width:460px;margin:0 auto;}
+.lock-box{background:var(--ink2);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius-lg);padding:2.5rem 2rem;text-align:center;position:relative;}
+.lock-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:var(--radius-lg) var(--radius-lg) 0 0;}
+.lock-icon{font-size:40px;margin-bottom:1rem;}
+.lock-box h3{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:var(--white);margin-bottom:.5rem;}
+.lock-box p{font-size:13px;color:var(--steel);margin-bottom:1.5rem;}
+.lock-row{display:flex;gap:8px;}
+.lock-input{flex:1;padding:11px 16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:var(--radius);color:var(--white);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;letter-spacing:3px;transition:border-color .2s;}
+.lock-input:focus{border-color:var(--accent);}
+.lock-input::placeholder{letter-spacing:0;color:var(--steel);}
+.lock-submit{padding:11px 22px;background:var(--accent);color:var(--ink);border:none;border-radius:var(--radius);font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s;white-space:nowrap;}
+.lock-submit:hover{background:var(--accent2);}
+.lock-err{font-size:12px;color:#e74c3c;margin-top:.75rem;display:none;}
+.lock-err.show{display:block;}
+.lock-hint{font-size:11px;color:var(--steel);margin-top:1rem;opacity:.5;}
+.shake{animation:shake .4s ease;}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
+
+/* UPLOAD SECTION */
+#upload-section{display:none;padding:3rem 2.5rem;background:var(--surface);border-bottom:1px solid var(--surface2);}
+#upload-section.open{display:block;}
+.upload-layout{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+.drop-zone{border:2px dashed rgba(13,17,23,.2);border-radius:var(--radius-lg);background:var(--white);padding:2.5rem 2rem;text-align:center;cursor:pointer;transition:all .3s;position:relative;}
+.drop-zone.dragging{border-color:var(--accent);background:rgba(232,160,48,.05);}
+.drop-icon{width:56px;height:56px;background:var(--ink);border-radius:var(--radius-lg);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;}
+.drop-icon svg{width:26px;height:26px;stroke:var(--accent);fill:none;stroke-width:1.5;}
+.drop-zone h3{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:.4rem;}
+.drop-zone p{color:var(--ink3);font-size:13px;margin-bottom:1rem;}
+.drop-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;}
+.file-type-badges{display:flex;gap:6px;justify-content:center;}
+.ftb{font-size:10px;font-weight:700;padding:3px 10px;border-radius:2px;background:var(--ink);color:var(--accent);letter-spacing:1px;}
+.upload-meta-form{background:var(--white);border:1px solid var(--surface2);border-radius:var(--radius-lg);padding:1.5rem;display:flex;flex-direction:column;gap:1rem;}
+.upload-meta-form h4{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;}
+.fm-group{display:flex;flex-direction:column;gap:5px;}
+.fm-group label{font-size:12px;color:var(--ink3);font-weight:500;}
+.fm-group input,.fm-group select,.fm-group textarea{padding:9px 12px;border:1px solid var(--surface2);border-radius:var(--radius);font-size:13px;color:var(--ink);background:var(--surface);font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s;}
+.fm-group input:focus,.fm-group select:focus,.fm-group textarea:focus{border-color:var(--accent);}
+.fm-group textarea{resize:vertical;min-height:70px;}
+.loading-bar{height:3px;background:var(--surface2);border-radius:2px;margin-top:1rem;overflow:hidden;display:none;}
+.loading-bar.active{display:block;}
+.loading-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px;animation:loadA 1.2s ease-in-out forwards;}
+@keyframes loadA{to{width:100%;}}
+
+/* VIEWER */
+#viewer-section{display:none;padding:3rem 2.5rem;background:var(--white);}
+#viewer-section.open{display:block;}
+.viewer-wrap{max-width:1100px;margin:0 auto;}
+.viewer-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;padding-bottom:1.25rem;border-bottom:2px solid var(--ink);}
+.viewer-file-info{display:flex;align-items:center;gap:12px;}
+.viewer-badge{background:var(--ink);color:var(--accent);font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;padding:5px 12px;border-radius:var(--radius);}
+.viewer-name{font-size:14px;font-weight:500;}
+.viewer-meta{font-size:12px;color:var(--steel);}
+.sheet-tabs{display:flex;gap:0;border-bottom:2px solid var(--surface2);margin-bottom:1.5rem;overflow-x:auto;}
+.sheet-tab{padding:9px 18px;font-size:13px;font-weight:500;cursor:pointer;border:none;background:none;color:var(--steel);border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:all .2s;font-family:'DM Sans',sans-serif;}
+.sheet-tab:hover{color:var(--ink);}
+.sheet-tab.active{color:var(--ink);border-bottom-color:var(--accent);font-weight:600;}
+.summary-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:1.5rem;}
+.sum-card{background:var(--surface);border-radius:var(--radius-lg);padding:1rem 1.25rem;border-left:3px solid var(--accent);}
+.sum-val{font-family:'Syne',sans-serif;font-size:22px;font-weight:700;color:var(--ink);}
+.sum-lbl{font-size:11px;color:var(--ink3);text-transform:uppercase;letter-spacing:1px;margin-top:3px;}
+.table-wrap{overflow-x:auto;border:1px solid var(--surface2);border-radius:var(--radius-lg);background:var(--white);}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+thead{background:var(--ink);}
+thead th{padding:11px 15px;text-align:left;font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--accent);letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap;}
+tbody tr{border-bottom:1px solid var(--surface2);}
+tbody tr:last-child{border-bottom:none;}
+tbody tr:hover{background:var(--surface);}
+tbody td{padding:10px 15px;color:var(--ink);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.td-num{font-family:'Syne',sans-serif;font-size:13px;font-weight:600;text-align:right;}
+.export-row{display:flex;gap:10px;margin-top:1.5rem;flex-wrap:wrap;}
+.btn-dark{background:var(--ink);color:var(--white);padding:9px 18px;border-radius:var(--radius);font-size:13px;font-weight:500;cursor:pointer;border:none;display:flex;align-items:center;gap:7px;font-family:'DM Sans',sans-serif;transition:all .2s;}
+.btn-dark:hover{background:var(--ink2);}
+.btn-accent{background:var(--accent);color:var(--ink);padding:9px 18px;border-radius:var(--radius);font-size:13px;font-weight:600;cursor:pointer;border:none;display:flex;align-items:center;gap:7px;font-family:'DM Sans',sans-serif;transition:all .2s;}
+.btn-accent:hover{background:var(--accent2);}
+
+/* SERVICIOS */
+#servicios{padding:4rem 2.5rem;background:var(--ink);}
+.services-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.25rem;}
+.srv-card{background:var(--ink2);border:1px solid rgba(255,255,255,.07);border-radius:var(--radius-lg);padding:1.5rem;transition:all .3s;position:relative;overflow:hidden;}
+.srv-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent);transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+.srv-card:hover::after{transform:scaleX(1);}
+.srv-card:hover{border-color:rgba(232,160,48,.25);transform:translateY(-2px);}
+.srv-num{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:rgba(232,160,48,.12);margin-bottom:.5rem;line-height:1;}
+.srv-card h3{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--white);margin-bottom:.4rem;}
+.srv-card p{font-size:13px;color:var(--steel);line-height:1.6;}
+.srv-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:.75rem;}
+.stag{font-size:10px;font-weight:600;padding:2px 8px;border-radius:2px;background:rgba(232,160,48,.1);color:var(--accent);letter-spacing:.5px;text-transform:uppercase;border:1px solid rgba(232,160,48,.18);}
+
+/* CALCULADORAS */
+#calculadoras{padding:4rem 2.5rem;background:var(--surface);}
+.calc-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem;}
+.calc-card{background:var(--white);border-radius:var(--radius-lg);padding:1.4rem;border:1px solid var(--surface2);}
+.calc-card h4{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:.9rem;color:var(--ink);}
+.calc-card label{font-size:12px;color:var(--ink3);display:block;margin-bottom:3px;}
+.calc-card input,.calc-card select{width:100%;padding:8px 12px;border:1px solid var(--surface2);border-radius:var(--radius);font-size:13px;color:var(--ink);background:var(--surface);font-family:'DM Sans',sans-serif;margin-bottom:.65rem;outline:none;transition:border-color .2s;}
+.calc-card input:focus,.calc-card select:focus{border-color:var(--accent);}
+.calc-result{background:var(--ink);color:var(--accent);border-radius:var(--radius);padding:9px 14px;font-size:13px;font-family:'Syne',sans-serif;font-weight:600;text-align:center;min-height:38px;display:flex;align-items:center;justify-content:center;}
+
+/* CONTACTO */
+#contacto{padding:4rem 2.5rem;background:var(--white);}
+.contact-layout{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.2fr;gap:4rem;align-items:start;}
+.contact-info h2{font-family:'Syne',sans-serif;font-size:30px;font-weight:700;letter-spacing:-.5px;margin-bottom:1rem;}
+.contact-info p{color:var(--ink3);margin-bottom:2rem;}
+.contact-items{display:flex;flex-direction:column;gap:.9rem;}
+.c-item{display:flex;align-items:flex-start;gap:1rem;padding:.9rem 1.1rem;background:var(--surface);border-radius:var(--radius-lg);border-left:3px solid var(--accent);}
+.c-icon{font-size:18px;}
+.c-label{font-size:11px;color:var(--steel);text-transform:uppercase;letter-spacing:1px;}
+.c-val{font-size:14px;font-weight:500;color:var(--ink);}
+.cf{display:flex;flex-direction:column;gap:.9rem;}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}
+.cf-g{display:flex;flex-direction:column;gap:4px;}
+.cf-g label{font-size:12px;font-weight:500;color:var(--ink3);}
+.cf-g input,.cf-g select,.cf-g textarea{padding:9px 13px;border:1px solid var(--surface2);border-radius:var(--radius);font-size:13px;font-family:'DM Sans',sans-serif;color:var(--ink);background:var(--surface);outline:none;transition:border-color .2s;}
+.cf-g input:focus,.cf-g select:focus,.cf-g textarea:focus{border-color:var(--accent);}
+.cf-g textarea{resize:vertical;min-height:90px;}
+
+footer{background:var(--ink);padding:1.75rem 2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;border-top:2px solid var(--accent);}
+.footer-brand{font-family:'Syne',sans-serif;font-weight:800;font-size:16px;color:var(--white);}
+.footer-brand span{color:var(--accent);}
+footer p{font-size:12px;color:var(--steel);}
+.norm-badges{display:flex;gap:6px;}
+.nb{font-size:10px;font-weight:600;letter-spacing:1px;padding:3px 10px;border-radius:2px;background:rgba(232,160,48,.1);color:var(--accent);border:1px solid rgba(232,160,48,.2);}
+
+#toast{position:fixed;bottom:2rem;right:2rem;background:var(--ink);color:var(--white);padding:12px 20px;border-radius:var(--radius-lg);font-size:13px;font-weight:500;border-left:3px solid var(--accent);transform:translateY(100px);opacity:0;transition:all .3s;z-index:999;max-width:320px;}
+#toast.show{transform:translateY(0);opacity:1;}
+
+/* Admin panel panel */
+.admin-bar{display:none;background:rgba(26,107,60,.1);border:1px solid rgba(26,107,60,.25);border-radius:var(--radius-lg);padding:1rem 1.5rem;margin-bottom:1.5rem;display:none;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.admin-bar.show{display:flex;}
+.admin-bar-left{font-size:13px;color:#1a6b3c;font-weight:500;}
+.admin-bar-right{display:flex;gap:8px;}
+.adm-btn{padding:6px 14px;border-radius:var(--radius);font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;border:1px solid;}
+.adm-btn-green{background:rgba(26,107,60,.15);color:#1a6b3c;border-color:rgba(26,107,60,.3);}
+.adm-btn-green:hover{background:rgba(26,107,60,.25);}
+.adm-btn-red{background:rgba(192,57,43,.1);color:#c0392b;border-color:rgba(192,57,43,.25);}
+.adm-btn-red:hover{background:rgba(192,57,43,.2);}
+
+@media(max-width:768px){
+  .hero-grid,.upload-layout,.contact-layout,.cf-row{grid-template-columns:1fr;}
+  .hero h1{font-size:32px;}
+  nav{padding:0 1.25rem;}
+  .nav-links a{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Civil<span>Pro</span></div>
+  <div class="nav-links">
+    <a href="file:///C:/Users/USUARIO/Downloads/structurapro_v3.html#biblioteca">Archivos</a>
+    <a href="file:///C:/Users/USUARIO/Downloads/structurapro_v3.html#servicios">Servicios</a>
+    <a href="file:///C:/Users/USUARIO/Downloads/structurapro_v3.html#calculadoras">Calculadoras</a>
+    <a href="file:///C:/Users/USUARIO/Downloads/structurapro_v3.html#contacto">Contacto</a>
+    <button class="nav-admin-btn unlocked" id="navAdminBtn" onclick="toggleAdminPanel()">🔓 Admin</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-tag">Ingeniería Civil · Perú</div>
+      <h1>Calcula, analiza y <em>construye</em> con precisión</h1>
+      <p>Plataforma especializada en metrados, dosificación de concreto, zapatas y presupuestos. Accede a los archivos Excel compartidos o usa nuestras calculadoras.</p>
+      <div class="btn-group">
+        <a href="file:///C:/Users/USUARIO/Downloads/structurapro_v3.html#biblioteca" class="btn btn-primary">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+          Ver archivos Excel
+        </a>
+        <a href="file:///C:/Users/USUARIO/Downloads/structurapro_v3.html#calculadoras" class="btn btn-outline">Calculadoras gratis</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">+200</div><div class="stat-lbl">Proyectos</div></div>
+        <div><div class="stat-num">ACI 318</div><div class="stat-lbl">Norma</div></div>
+        <div><div class="stat-num">15+</div><div class="stat-lbl">Años exp.</div></div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="card-label">Sistema de archivos — Vista previa</div>
+      <div class="mini-row"><div class="mini-dot" style="background:#e8a030"></div><span>Metrados_Zapatas_2025.xlsx</span><strong>✓ Activo</strong></div>
+      <div class="mini-row"><div class="mini-dot" style="background:#1a6b3c"></div><span>Dosificacion_Concreto.xlsx</span><strong>✓ Activo</strong></div>
+      <div class="mini-row"><div class="mini-dot" style="background:#378add"></div><span>Presupuesto_Obra.xlsx</span><strong>✓ Activo</strong></div>
+      <div class="mini-row"><div class="mini-dot" style="background:#e8a030"></div><span>Descarga controlada</span><strong>🔒 Admin</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCK / ADMIN SECTION -->
+<section id="lock-section" style="display: none;">
+  <div class="lock-wrap">
+    <div class="sec-tag" style="text-align:center;margin-bottom:1.5rem;">Panel de administrador</div>
+    <div class="lock-box" id="lockBox">
+      <div class="lock-icon">🔐</div>
+      <h3>Acceso administrador</h3>
+      <p>Ingresa tu contraseña para subir archivos y gestionar descargas.</p>
+      <div class="lock-row">
+        <input type="password" class="lock-input" id="pwdInput" placeholder="Contraseña..." onkeydown="if(event.key===&#39;Enter&#39;)checkPwd()">
+        <button class="lock-submit" onclick="checkPwd()">Entrar</button>
+      </div>
+      <div class="lock-err" id="lockErr">❌ Contraseña incorrecta</div>
+      <div class="lock-hint">Solo el administrador tiene acceso.</div>
+    </div>
+  </div>
+</section>
+
+<!-- UPLOAD SECTION (solo admin) -->
+<section id="upload-section" class="open">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="admin-bar show" id="adminBar">
+      <div class="admin-bar-left">✅ Sesión de administrador activa</div>
+      <div class="admin-bar-right">
+        <button class="adm-btn adm-btn-green" onclick="toggleDownloadAll()">🔓 Activar descargas globales</button>
+        <button class="adm-btn adm-btn-red" onclick="adminLogout()">🔒 Cerrar sesión</button>
+      </div>
+    </div>
+    <div style="margin-bottom:2rem;">
+      <div class="sec-tag">Módulo de subida</div>
+      <h2 class="sec-h2">Subir nuevo archivo Excel</h2>
+    </div>
+    <div class="upload-layout">
+      <div>
+        <div class="drop-zone" id="dropZone">
+          <input type="file" id="fileInput" accept=".xlsx,.xls,.csv">
+          <div class="drop-icon"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg></div>
+          <h3>Arrastra tu archivo aquí</h3>
+          <p>o haz clic para seleccionar</p>
+          <div class="file-type-badges"><span class="ftb">.XLSX</span><span class="ftb">.XLS</span><span class="ftb">.CSV</span></div>
+        </div>
+        <div class="loading-bar" id="loadingBar"><div class="loading-fill"></div></div>
+      </div>
+      <div class="upload-meta-form">
+        <h4>📋 Información del archivo</h4>
+        <div class="fm-group">
+          <label>Nombre para mostrar</label>
+          <input type="text" id="metaNombre" placeholder="Ej: Metrados Obra Cusco 2025">
+        </div>
+        <div class="fm-group">
+          <label>Categoría</label>
+          <select id="metaCat">
+            <option value="Metrados">Metrados</option>
+            <option value="Presupuesto">Presupuesto</option>
+            <option value="Dosificación">Dosificación de concreto</option>
+            <option value="Zapatas">Cálculo de zapatas</option>
+            <option value="Ladrillos">Ladrillos / Muro</option>
+            <option value="Acero">Acero de refuerzo</option>
+            <option value="General">General</option>
+          </select>
+        </div>
+        <div class="fm-group">
+          <label>Descripción breve</label>
+          <textarea id="metaDesc" placeholder="Describe el contenido del archivo..."></textarea>
+        </div>
+        <div class="fm-group">
+          <label>¿Descarga habilitada?</label>
+          <select id="metaDl">
+            <option value="0">🔒 Bloqueada (solo lectura)</option>
+            <option value="1">🔓 Habilitada</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BIBLIOTECA PÚBLICA -->
+<section id="biblioteca" style="padding:4rem 2.5rem;background:var(--white);">
+  <div class="sec-wrap">
+    <div class="sec-header">
+      <div class="sec-tag">Repositorio de archivos</div>
+      <h2 class="sec-h2">Biblioteca de Excel</h2>
+      <p class="sec-p">Archivos de ingeniería civil disponibles para consulta. Para descargar, solicita acceso al administrador.</p>
+    </div>
+    <!-- Admin: gestión de descargas por archivo -->
+    <div id="adminLibBar" style="display: block; background: rgba(26, 107, 60, 0.08); border: 1px solid rgba(26, 107, 60, 0.2); border-radius: var(--radius-lg); padding: 1rem 1.5rem; margin-bottom: 1.5rem; font-size: 13px; color: rgb(26, 107, 60);">
+      🔑 <strong>Modo administrador activo</strong> — Puedes activar o bloquear descargas por archivo y eliminarlos.
+    </div>
+    <div class="lib-grid" id="libGrid">
+    <div class="lib-card" id="card-1778207540369">
+      <div class="lib-card-top">
+        <div class="lib-file-icon">📊</div>
+        <div class="lib-file-info">
+          <div class="lib-file-name">CALCULO DE LA CANTIDAD DE LADRILLOS</div>
+          <div class="lib-file-date">07 may. 2026 · 34.5 KB</div>
+        </div>
+      </div>
+      <div class="lib-badges">
+        <span class="lib-badge lb-sheets">1 hoja</span>
+        <span class="lib-badge lb-rows">34 filas</span>
+        <span class="lib-badge lb-cols">0 cols</span>
+        <span class="lib-badge lb-size">Ladrillos</span>
+      </div>
+      <div class="lib-desc">Calculadora en Excel con VBA desarrollada para la dosificación de concreto, capaz de calcular automáticamente las proporciones de cemento, arena, piedra y agua según la resistencia requerida y el volumen de mezcla. Permite optimizar el diseño de mezcla, reducir errores en los cálculos y obtener resultados rápidos y precisos para aplicaciones en obras de construcción.</div>
+      <div class="lib-actions">
+        <button class="lib-btn-view" onclick="viewFile(1778207540369)">👁 Ver contenido</button>
+        <button class="lib-btn-dl locked" onclick="downloadFile(1778207540369)">🔒 Bloqueado</button>
+      </div>
+      <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;">
+      <button class="adm-btn adm-btn-green" style="font-size:11px;padding:5px 10px;" onclick="toggleFileDl(1778207540369)">
+        🔓 Habilitar descarga
+      </button>
+      <button class="adm-btn adm-btn-red" style="font-size:11px;padding:5px 10px;" onclick="deleteFile(1778207540369)">🗑 Eliminar</button>
+    </div>
+    </div>
+    <div class="lib-card" id="card-1778207453835">
+      <div class="lib-card-top">
+        <div class="lib-file-icon">📊</div>
+        <div class="lib-file-info">
+          <div class="lib-file-name">DOSIFICACION DEL CONCRETO</div>
+          <div class="lib-file-date">07 may. 2026 · 34.1 KB</div>
+        </div>
+      </div>
+      <div class="lib-badges">
+        <span class="lib-badge lb-sheets">2 hojas</span>
+        <span class="lib-badge lb-rows">47 filas</span>
+        <span class="lib-badge lb-cols">0 cols</span>
+        <span class="lib-badge lb-size">Dosificación</span>
+      </div>
+      <div class="lib-desc">Calculadora en Excel con VBA desarrollada para la dosificación de concreto, capaz de calcular automáticamente las proporciones de cemento, arena, piedra y agua según la resistencia requerida y el volumen de mezcla. Permite optimizar el diseño de mezcla, reducir errores en los cálculos y obtener resultados rápidos y precisos para aplicaciones en obras de construcción.</div>
+      <div class="lib-actions">
+        <button class="lib-btn-view" onclick="viewFile(1778207453835)">👁 Ver contenido</button>
+        <button class="lib-btn-dl locked" onclick="downloadFile(1778207453835)">🔒 Bloqueado</button>
+      </div>
+      <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;">
+      <button class="adm-btn adm-btn-green" style="font-size:11px;padding:5px 10px;" onclick="toggleFileDl(1778207453835)">
+        🔓 Habilitar descarga
+      </button>
+      <button class="adm-btn adm-btn-red" style="font-size:11px;padding:5px 10px;" onclick="deleteFile(1778207453835)">🗑 Eliminar</button>
+    </div>
+    </div>
+    <div class="lib-card" id="card-1778207302811">
+      <div class="lib-card-top">
+        <div class="lib-file-icon">📊</div>
+        <div class="lib-file-info">
+          <div class="lib-file-name">CALCULO DE MATERIALES PARA ZAPATA </div>
+          <div class="lib-file-date">07 may. 2026 · 91.2 KB</div>
+        </div>
+      </div>
+      <div class="lib-badges">
+        <span class="lib-badge lb-sheets">2 hojas</span>
+        <span class="lib-badge lb-rows">86 filas</span>
+        <span class="lib-badge lb-cols">0 cols</span>
+        <span class="lib-badge lb-size">Zapatas</span>
+      </div>
+      <div class="lib-desc">Calculadora en Excel con VBA diseñada para el cálculo automático de materiales de una zapata, permitiendo obtener de manera rápida y precisa el volumen de concreto y materiales requeridos según las dimensiones ingresadas. Incluye automatización de procesos, validación de datos y generación de resultados claros para facilitar el diseño y presupuesto en proyectos de construcción.</div>
+      <div class="lib-actions">
+        <button class="lib-btn-view" onclick="viewFile(1778207302811)">👁 Ver contenido</button>
+        <button class="lib-btn-dl locked" onclick="downloadFile(1778207302811)">🔒 Bloqueado</button>
+      </div>
+      <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;">
+      <button class="adm-btn adm-btn-green" style="font-size:11px;padding:5px 10px;" onclick="toggleFileDl(1778207302811)">
+        🔓 Habilitar descarga
+      </button>
+      <button class="adm-btn adm-btn-red" style="font-size:11px;padding:5px 10px;" onclick="deleteFile(1778207302811)">🗑 Eliminar</button>
+    </div>
+    </div></div>
+  </div>
+</section>
+
+<!-- VIEWER -->
+<section id="viewer-section" class="">
+  <div class="viewer-wrap">
+    <div class="viewer-header">
+      <div class="viewer-file-info">
+        <div class="viewer-badge">EXCEL</div>
+        <div>
+          <div class="viewer-name" id="viewerName">CALCULADOR DE LADRILLOS </div>
+          <div class="viewer-meta" id="viewerMeta">1 hoja(s) · 34 filas · 34.5 KB · 07 may. 2026</div>
+        </div>
+      </div>
+      <button class="btn-dark" onclick="closeViewer()">✕ Cerrar</button>
+    </div>
+    <div class="summary-row" id="viewSummary">
+    <div class="sum-card"><div class="sum-val">24</div><div class="sum-lbl">Filas</div></div>
+    <div class="sum-card"><div class="sum-val">9</div><div class="sum-lbl">Columnas</div></div>
+    <div class="sum-card"><div class="sum-val">160.69</div><div class="sum-lbl">Σ </div></div><div class="sum-card"><div class="sum-val">246.12</div><div class="sum-lbl">Σ </div></div><div class="sum-card"><div class="sum-val">90.12</div><div class="sum-lbl">Σ </div></div><div class="sum-card"><div class="sum-val">1,421.5</div><div class="sum-lbl">Σ </div></div>
+  </div>
+    <div class="sheet-tabs" id="viewTabs"><button class="sheet-tab active" onclick="renderViewSheet(0);document.querySelectorAll(&#39;.sheet-tab&#39;).forEach((t,j)=&gt;t.classList.toggle(&#39;active&#39;,j===0))">Ladrillos</button></div>
+    <div class="table-wrap"><table><thead id="viewHead"><tr><th>—</th><th>—</th><th>—</th><th>—</th><th>—</th><th>—</th><th>—</th><th>—</th><th>—</th></tr></thead><tbody id="viewBody"><tr><td class=""></td><td class="">🧱 CALCULADORA DE LADRILLOS POR M² DE MURO</td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td></tr><tr><td class=""></td><td class="">📋 DATOS DE ENTRADA — DIMENSIONES DEL LADRILLO</td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td></tr><tr><td class=""></td><td class="">Parámetro</td><td class="">Valor</td><td class="">Unidad</td><td class="">Parámetro</td><td class="">Valor</td><td class="">Unidad</td><td class="">Nota</td><td class=""></td></tr><tr><td class=""></td><td class="">Longitud del ladrillo (b)</td><td class="td-num">23</td><td class="">cm</td><td class="">Junta (j)</td><td class="td-num">1.5</td><td class="">cm</td><td class="">King Kong std.</td><td class=""></td></tr><tr><td class=""></td><td class="">Altura del ladrillo (h)</td><td class="td-num">10</td><td class="">cm</td><td class="">Área de muro</td><td class="td-num">1</td><td class="">m²</td><td class="">Modificar aquí</td><td class=""></td></tr><tr><td class=""></td><td class="">Ancho del ladrillo</td><td class="td-num">13.5</td><td class="">cm</td><td class="">Desperdicio</td><td class="td-num">5</td><td class="">%</td><td class="">Ajustar si es necesario</td><td class=""></td></tr><tr><td class=""></td><td class="">📐 FÓRMULA BASE: #Ladrillos = 1 m² ÷ [(b+j) × (h+j)] | b y h en metros</td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td></tr><tr><td class=""></td><td class="">🏗️ RESULTADOS POR TIPO DE COLOCACIÓN</td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td></tr><tr><td class=""></td><td class="">Descripción</td><td class="">TIPO SOGA</td><td class="">TIPO CABEZA</td><td class="">TIPO CANTO</td><td class="">SOGA+Desp.</td><td class="">CABEZA+Desp.</td><td class="">CANTO+Desp.</td><td class=""></td></tr><tr><td class=""></td><td class="">Dimensión base usada (m)</td><td class="td-num">0.23</td><td class="td-num">0.135</td><td class="td-num">0.23</td><td class=""></td><td class=""></td><td class=""></td><td class=""></td></tr><tr><td class=""></td><td class="">Dimensión altura usada (m)</td><td class="td-num">0.1</td><td class="td-num">0.1</td><td class="td-num">0.135</td><td class=""></td><td class=""></td><td class=""></td><td class=""></td></tr><tr><td class=""></td><td class="">Junta en metros (m)</td><td class="td-num">0.015</td><td class="td-num">0.015</td><td class="td-num">0.015</td><td class=""></td><td class=""></td><td class=""></td><td class=""></td></tr><tr><td class=""></td><td class="">#Ladr. x m² SIN desp.</td><td class="td-num">35.49</td><td class="td-num">57.97</td><td class="td-num">27.21</td><td class=""></td><td class=""></td><td class=""></td><td class=""></td></tr><tr><td class=""></td><td class="">#Ladr. x m² CON desperdicio</td><td class="td-num">38</td><td class="td-num">61</td><td class="td-num">29</td><td class="td-num">38</td><td class="td-num">61</td><td class="td-num">29</td><td class=""></td></tr><tr><td class=""></td><td class="">📦 TOTAL DE LADRILLOS PARA EL ÁREA INGRESADA (m²)</td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td></tr><tr><td class=""></td><td class="">Total ladrillos</td><td class="">TIPO SOGA</td><td class="">TIPO CABEZA</td><td class="">TIPO CANTO</td><td class="">FÓRMULA</td><td class="">Incluye desp.</td><td class="">Área (m²)</td><td class=""></td></tr><tr><td class=""></td><td class="">RESULTADO FINAL</td><td class="td-num">38</td><td class="td-num">61</td><td class="td-num">29</td><td class="td-num">1 m2 x 38 = 38</td><td class="td-num">0.05</td><td class="td-num">1</td><td class=""></td></tr><tr><td class=""></td><td class="">🔧 TABLA DE REFERENCIA: CANTIDAD DE MORTERO POR 1 m³</td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td></tr><tr><td class=""></td><td class="">Proporción</td><td class="">a/c</td><td class="">Cemento (bolsas)</td><td class="">Arena (m³)</td><td class="">Agua (litros)</td><td class="">Uso típico</td><td class="">Obs.</td><td class=""></td></tr><tr><td class=""></td><td class="td-num">0.042361111111111106</td><td class="td-num">0.29</td><td class="td-num">23.2</td><td class="td-num">0.66</td><td class="td-num">286</td><td class="">Junta fina</td><td class="">Alta resistencia</td><td class=""></td></tr><tr><td class=""></td><td class="td-num">0.04305555555555556</td><td class="td-num">0.43</td><td class="td-num">15.2</td><td class="td-num">0.86</td><td class="td-num">277</td><td class="">Junta normal</td><td class="">Uso común</td><td class=""></td></tr><tr><td class=""></td><td class="td-num">0.043750000000000004</td><td class="td-num">0.5</td><td class="td-num">11.2</td><td class="td-num">0.96</td><td class="td-num">272</td><td class="">Junta gruesa</td><td class="">Económico</td><td class=""></td></tr><tr><td class=""></td><td class="td-num">0.044444444444444446</td><td class="td-num">0.55</td><td class="td-num">8.9</td><td class="td-num">1</td><td class="td-num">272</td><td class="">Relleno</td><td class="">Baja carga</td><td class=""></td></tr><tr><td class=""></td><td class="td-num">0.04513888888888889</td><td class="td-num">0.58</td><td class="td-num">7.4</td><td class="td-num">1.05</td><td class="td-num">268</td><td class="">Relleno</td><td class="">Muy económico</td><td class=""></td></tr></tbody></table></div>
+    <div class="export-row" id="viewExportRow">
+    <button class="btn-accent" onclick="exportCSVViewer()">⬇ Exportar CSV</button>
+    <button class="btn-dark" onclick="window.print()">🖨 Imprimir</button>
+    <button class="btn-dark" onclick="copyJSONViewer()">📋 Copiar JSON</button>
+  </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios" style="padding:4rem 2.5rem;background:var(--ink);">
+  <div class="sec-wrap">
+    <div class="sec-header">
+      <div class="sec-tag">Lo que hacemos</div>
+      <h2 class="sec-h2" style="color:var(--white);">Servicios especializados</h2>
+      <p class="sec-p sec-p-dark">Soluciones técnicas para cada etapa de tu proyecto constructivo.</p>
+    </div>
+    <div class="services-grid">
+      <div class="srv-card"><div class="srv-num">01</div><h3>Diseño estructural</h3><p>Concreto armado, acero y albañilería confinada según RNE E.060.</p><div class="srv-tags"><span class="stag">E.060</span><span class="stag">ACI 318</span></div></div>
+      <div class="srv-card"><div class="srv-num">02</div><h3>Metrados y presupuestos</h3><p>APU, cronogramas y expedientes técnicos con S10 y Excel avanzado.</p><div class="srv-tags"><span class="stag">S10</span><span class="stag">CAPECO</span></div></div>
+      <div class="srv-card"><div class="srv-num">03</div><h3>Cálculo de materiales</h3><p>Dosificación, ladrillos, acero y conversión a unidades de obra.</p><div class="srv-tags"><span class="stag">Concreto</span><span class="stag">Acero</span></div></div>
+      <div class="srv-card"><div class="srv-num">04</div><h3>Supervisión de obra</h3><p>Control de calidad, validación de procesos e informes técnicos.</p><div class="srv-tags"><span class="stag">NTP</span><span class="stag">ISO 9001</span></div></div>
+      <div class="srv-card"><div class="srv-num">05</div><h3>Expediente técnico</h3><p>Documentación completa para obras privadas y licitaciones públicas.</p><div class="srv-tags"><span class="stag">INVIERTE.PE</span><span class="stag">AutoCAD</span></div></div>
+      <div class="srv-card"><div class="srv-num">06</div><h3>Planillas VBA Excel</h3><p>Algoritmos automatizados para cálculos estructurales y metrados.</p><div class="srv-tags"><span class="stag">VBA</span><span class="stag">Macros</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULADORAS -->
+<section id="calculadoras" style="padding:4rem 2.5rem;background:var(--surface);">
+  <div class="sec-wrap">
+    <div class="sec-header">
+      <div class="sec-tag">Herramientas en línea</div>
+      <h2 class="sec-h2">Calculadoras rápidas</h2>
+      <p class="sec-p">Resultados instantáneos sin necesidad de subir archivos.</p>
+    </div>
+    <div class="calc-grid">
+      <div class="calc-card">
+        <h4>🏗️ Dosificación de concreto</h4>
+        <label>Volumen (m³)</label><input type="number" id="cVol" value="4" step="0.5" min="0.1" oninput="calcConcreto()">
+        <label>F'c (kg/cm²)</label>
+        <select id="cFpc" onchange="calcConcreto()"><option value="140">140</option><option value="175">175</option><option value="210" selected="">210</option><option value="245">245</option><option value="280">280</option></select>
+        <label>% Desperdicio</label><input type="number" id="cDesp" value="5" min="0" max="20" oninput="calcConcreto()">
+        <div class="calc-result" id="rConcreto">Cem: 40.87 bol | Arena: 2.184 m³ | Piedra: 2.226 m³</div>
+      </div>
+      <div class="calc-card">
+        <h4>🧱 Ladrillos por m² de muro</h4>
+        <label>Tipo de colocación</label>
+        <select id="lTipo" onchange="calcLadrillos()"><option value="soga">Soga — 23×10 cm</option><option value="cabeza">Cabeza — 13.5×10 cm</option><option value="canto">Canto — 23×13.5 cm</option></select>
+        <label>Área de muro (m²)</label><input type="number" id="lArea" value="10" step="0.5" oninput="calcLadrillos()">
+        <label>% Desperdicio</label><input type="number" id="lDesp" value="5" min="0" oninput="calcLadrillos()">
+        <div class="calc-result" id="rLadrillos">354.9 neto → 373 und con desp.</div>
+      </div>
+      <div class="calc-card">
+        <h4>⚙️ Volumen de zapatas</h4>
+        <label>Largo × Ancho × Alto (m)</label>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px">
+          <input type="number" id="zL" value="1.25" step="0.05" oninput="calcZapata()" placeholder="L">
+          <input type="number" id="zA" value="1.30" step="0.05" oninput="calcZapata()" placeholder="A">
+          <input type="number" id="zH" value="0.70" step="0.05" oninput="calcZapata()" placeholder="H">
+        </div>
+        <label>Cantidad de zapatas</label><input type="number" id="zN" value="10" min="1" oninput="calcZapata()">
+        <label>% Desperdicio</label><input type="number" id="zD" value="5" min="0" oninput="calcZapata()">
+        <div class="calc-result" id="rZapata">Vol: 11.375 m³ → 11.944 m³ con desp.</div>
+      </div>
+      <div class="calc-card">
+        <h4>🔩 Acero de refuerzo</h4>
+        <label>Longitud del elemento (m)</label><input type="number" id="aLon" value="3.0" step="0.1" oninput="calcAcero()">
+        <label>Cantidad de varillas</label><input type="number" id="aVar" value="4" min="1" oninput="calcAcero()">
+        <label>Diámetro</label>
+        <select id="aDiam" onchange="calcAcero()">
+          <option value="0.994">3/8" — 0.994 kg/m</option>
+          <option value="1.552" selected="">1/2" — 1.552 kg/m</option>
+          <option value="2.235">5/8" — 2.235 kg/m</option>
+          <option value="3.973">3/4" — 3.973 kg/m</option>
+          <option value="5.984">1" — 5.984 kg/m</option>
+        </select>
+        <div class="calc-result" id="rAcero">Long: 12.00 m | Peso: 18.62 kg</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" style="padding:4rem 2.5rem;background:var(--white);">
+  <div class="contact-layout">
+    <div class="contact-info">
+      <div class="sec-tag">Hablemos</div>
+      <h2>¿Tienes un proyecto?</h2>
+      <p>Consulta técnica gratuita. Trabajamos en todo el país desde Cusco, Perú.</p>
+      <div class="contact-items">
+        <div class="c-item"><div class="c-icon">📍</div><div><div class="c-label">Ubicación</div><div class="c-val">Cusco, Perú</div></div></div>
+        <div class="c-item"><div class="c-icon">📱</div><div><div class="c-label">WhatsApp</div><div class="c-val">+51 983 858 632</div></div></div>
+        <div class="c-item"><div class="c-icon">✉️</div><div><div class="c-label">Correo</div><div class="c-val">jsotoh.1842@gmail.com</div></div></div>
+        <div class="c-item"><div class="c-icon">🕐</div><div><div class="c-label">Horario</div><div class="c-val">Lun – Vie  8:00 – 18:00</div></div></div>
+      </div>
+    </div>
+    <form class="cf" onsubmit="submitForm(event)">
+      <div class="cf-row">
+        <div class="cf-g"><label>Nombre completo</label><input type="text" placeholder="Ej: Juan Quispe"></div>
+        <div class="cf-g"><label>Correo electrónico</label><input type="email" placeholder="correo@empresa.com"></div>
+      </div>
+      <div class="cf-g">
+        <label>Tipo de servicio</label>
+        <select><option>Diseño estructural</option><option>Metrados y presupuestos</option><option>Cálculo de materiales</option><option>Supervisión de obra</option><option>Expediente técnico</option><option>Planilla VBA Excel</option><option>Otro</option></select>
+      </div>
+      <div class="cf-g"><label>Descripción del proyecto</label><textarea placeholder="Describe tu consulta técnica..."></textarea></div>
+      <button type="submit" class="btn-accent" style="align-self:flex-start;padding:11px 26px;font-size:14px;">Enviar consulta →</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">Structura<span>Pro</span></div>
+  <p>© 2025 StructuraPro — Ingeniería Civil · Cusco, Perú</p>
+  <div class="norm-badges"><span class="nb">RNE</span><span class="nb">E.060</span><span class="nb">ACI 318</span><span class="nb">CAPECO</span></div>
+</footer>
+
+<div id="toast" class="">🔒 Descargas bloqueadas</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// CONFIGURACIÓN — CAMBIA ESTO
+// ═══════════════════════════════════════════════════════════════
+const ADMIN_PWD = 'civil2025';   // ← TU CONTRASEÑA
+
+// ═══════════════════════════════════════════════════════════════
+// ESTADO
+// ═══════════════════════════════════════════════════════════════
+let isAdmin        = false;
+let globalDlOpen   = false;
+let library        = [];   // [{id,nombre,cat,desc,fecha,dlEnabled,data,sheets,rows,cols,size}]
+let viewerWB       = null;
+let viewerSheets   = [];
+let viewerFileIdx  = -1;
+
+// ── STORAGE ────────────────────────────────────────────────────
+function saveLib(){ try{ localStorage.setItem('sp_library', JSON.stringify(library.map(f=>({...f,data:null})))); }catch(e){} }
+// Note: file data (base64) is session-only for privacy. Only metadata is persisted.
+
+// ── CALCULADORAS ───────────────────────────────────────────────
+const CAPECO={140:{cem:7.01,are:0.51,pie:0.64},175:{cem:8.43,are:0.54,pie:0.55},210:{cem:9.73,are:0.52,pie:0.53},245:{cem:11.50,are:0.50,pie:0.51},280:{cem:13.34,are:0.45,pie:0.51}};
+const J=0.015;
+const LADR={soga:{b:0.23,h:0.10},cabeza:{b:0.135,h:0.10},canto:{b:0.23,h:0.135}};
+
+function calcConcreto(){
+  const vol=parseFloat(document.getElementById('cVol').value)||0;
+  const fpc=parseInt(document.getElementById('cFpc').value);
+  const d=parseFloat(document.getElementById('cDesp').value)||0;
+  const t=CAPECO[fpc];if(!t||vol<=0)return;
+  const v=vol*(1+d/100);
+  document.getElementById('rConcreto').textContent=`Cem: ${(t.cem*v).toFixed(2)} bol | Arena: ${(t.are*v).toFixed(3)} m³ | Piedra: ${(t.pie*v).toFixed(3)} m³`;
+}
+function calcLadrillos(){
+  const tipo=document.getElementById('lTipo').value;
+  const area=parseFloat(document.getElementById('lArea').value)||0;
+  const d=parseFloat(document.getElementById('lDesp').value)||0;
+  const l=LADR[tipo];
+  const neto=1/((l.b+J)*(l.h+J));
+  document.getElementById('rLadrillos').textContent=`${(neto*area).toFixed(1)} neto → ${Math.ceil(neto*(1+d/100)*area)} und con desp.`;
+}
+function calcZapata(){
+  const vol=(parseFloat(document.getElementById('zL').value)||0)*(parseFloat(document.getElementById('zA').value)||0)*(parseFloat(document.getElementById('zH').value)||0)*(parseFloat(document.getElementById('zN').value)||0);
+  const d=parseFloat(document.getElementById('zD').value)||0;
+  document.getElementById('rZapata').textContent=`Vol: ${vol.toFixed(3)} m³ → ${(vol*(1+d/100)).toFixed(3)} m³ con desp.`;
+}
+function calcAcero(){
+  const lon=parseFloat(document.getElementById('aLon').value)||0;
+  const nv=parseFloat(document.getElementById('aVar').value)||0;
+  const kg=parseFloat(document.getElementById('aDiam').value)||0;
+  document.getElementById('rAcero').textContent=`Long: ${(lon*nv).toFixed(2)} m | Peso: ${(lon*nv*kg).toFixed(2)} kg`;
+}
+calcConcreto();calcLadrillos();calcZapata();calcAcero();
+
+// ── ADMIN AUTH ─────────────────────────────────────────────────
+function toggleAdminPanel(){
+  const ls=document.getElementById('lock-section');
+  if(isAdmin){
+    document.getElementById('upload-section').scrollIntoView({behavior:'smooth'});
+    return;
+  }
+  ls.style.display = ls.style.display==='block' ? 'none' : 'block';
+  if(ls.style.display==='block') ls.scrollIntoView({behavior:'smooth'});
+}
+
+function checkPwd(){
+  const val=document.getElementById('pwdInput').value.trim();
+  const err=document.getElementById('lockErr');
+  if(val===ADMIN_PWD){
+    isAdmin=true;
+    document.getElementById('lock-section').style.display='none';
+    document.getElementById('upload-section').classList.add('open');
+    document.getElementById('adminLibBar').style.display='block';
+    const btn=document.getElementById('navAdminBtn');
+    btn.textContent='🔓 Admin'; btn.classList.add('unlocked');
+    document.getElementById('upload-section').scrollIntoView({behavior:'smooth'});
+    document.getElementById('pwdInput').value='';
+    err.classList.remove('show');
+    renderLibrary();
+    showToast('✅ Sesión de administrador iniciada');
+  } else {
+    err.classList.add('show');
+    document.getElementById('pwdInput').value='';
+    const box=document.getElementById('lockBox');
+    box.classList.add('shake');
+    setTimeout(()=>box.classList.remove('shake'),400);
+  }
+}
+
+function adminLogout(){
+  isAdmin=false; globalDlOpen=false;
+  document.getElementById('upload-section').classList.remove('open');
+  document.getElementById('adminLibBar').style.display='none';
+  const btn=document.getElementById('navAdminBtn');
+  btn.textContent='🔒 Admin'; btn.classList.remove('unlocked');
+  renderLibrary();
+  showToast('🔒 Sesión cerrada');
+}
+
+// ── TOGGLE DESCARGA GLOBAL ─────────────────────────────────────
+function toggleDownloadAll(){
+  globalDlOpen=!globalDlOpen;
+  const btn=document.querySelector('.adm-btn-green');
+  btn.textContent=globalDlOpen?'🔒 Bloquear descargas globales':'🔓 Activar descargas globales';
+  renderLibrary();
+  showToast(globalDlOpen?'🔓 Descargas habilitadas para todos':'🔒 Descargas bloqueadas');
+}
+
+// ── FILE UPLOAD ────────────────────────────────────────────────
+const dropZone=document.getElementById('dropZone');
+const fileInput=document.getElementById('fileInput');
+
+dropZone.addEventListener('dragover',e=>{e.preventDefault();dropZone.classList.add('dragging');});
+dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('dragging'));
+dropZone.addEventListener('drop',e=>{e.preventDefault();dropZone.classList.remove('dragging');if(e.dataTransfer.files.length)processFile(e.dataTransfer.files[0]);});
+fileInput.addEventListener('change',e=>{if(e.target.files.length)processFile(e.target.files[0]);});
+
+function processFile(file){
+  if(!isAdmin){showToast('⚠️ Debes iniciar sesión como administrador');return;}
+  const bar=document.getElementById('loadingBar');
+  bar.classList.add('active'); bar.innerHTML='<div class="loading-fill"></div>';
+  const reader=new FileReader();
+  reader.onload=e=>{
+    try{
+      const data=new Uint8Array(e.target.result);
+      const wb=XLSX.read(data,{type:'array'});
+      const sheets=wb.SheetNames;
+      let totalRows=0;
+      sheets.forEach(s=>{ const d=XLSX.utils.sheet_to_json(wb.Sheets[s],{header:1,defval:''}); totalRows+=Math.max(0,d.length-1); });
+      const cols=sheets.length>0?(XLSX.utils.sheet_to_json(wb.Sheets[sheets[0]],{header:1})[0]||[]).length:0;
+      const nombre=document.getElementById('metaNombre').value.trim()||file.name.replace(/\.[^.]+$/,'');
+      const entry={
+        id: Date.now(),
+        nombre, file_name: file.name,
+        cat: document.getElementById('metaCat').value,
+        desc: document.getElementById('metaDesc').value.trim()||'Sin descripción.',
+        fecha: new Date().toLocaleDateString('es-PE',{day:'2-digit',month:'short',year:'numeric'}),
+        dlEnabled: document.getElementById('metaDl').value==='1',
+        size: (file.size/1024).toFixed(1),
+        sheets, rows: totalRows, cols,
+        wb  // stored in memory only
+      };
+      library.unshift(entry);
+      document.getElementById('metaNombre').value='';
+      document.getElementById('metaDesc').value='';
+      document.getElementById('metaDl').value='0';
+      fileInput.value='';
+      bar.classList.remove('active');
+      renderLibrary();
+      document.getElementById('biblioteca').scrollIntoView({behavior:'smooth'});
+      showToast(`✅ "${nombre}" subido y visible en biblioteca`);
+    }catch(err){bar.classList.remove('active');showToast('❌ Error al leer el archivo: '+err.message);}
+  };
+  reader.readAsArrayBuffer(file);
+}
+
+// ── RENDER LIBRARY ─────────────────────────────────────────────
+function renderLibrary(){
+  const grid=document.getElementById('libGrid');
+  if(!library.length){
+    grid.innerHTML='<div class="lib-empty"><div class="lib-empty-icon">📁</div><p>No hay archivos aún.<br>Inicia sesión como administrador para subir el primero.</p></div>';
+    return;
+  }
+  grid.innerHTML=library.map(f=>{
+    const canDl = globalDlOpen || f.dlEnabled;
+    const dlClass = canDl ? 'unlocked-dl' : 'locked';
+    const dlText  = canDl ? '⬇ Descargar' : '🔒 Bloqueado';
+    const adminExtra = isAdmin ? `
+      <button class="adm-btn adm-btn-green" style="font-size:11px;padding:5px 10px;" onclick="toggleFileDl(${f.id})">
+        ${f.dlEnabled?'🔒 Bloquear':'🔓 Habilitar'} descarga
+      </button>
+      <button class="adm-btn adm-btn-red" style="font-size:11px;padding:5px 10px;" onclick="deleteFile(${f.id})">🗑 Eliminar</button>
+    ` : '';
+    return `
+    <div class="lib-card" id="card-${f.id}">
+      <div class="lib-card-top">
+        <div class="lib-file-icon">📊</div>
+        <div class="lib-file-info">
+          <div class="lib-file-name">${f.nombre}</div>
+          <div class="lib-file-date">${f.fecha} · ${f.size} KB</div>
+        </div>
+      </div>
+      <div class="lib-badges">
+        <span class="lib-badge lb-sheets">${f.sheets.length} hoja${f.sheets.length>1?'s':''}</span>
+        <span class="lib-badge lb-rows">${f.rows} filas</span>
+        <span class="lib-badge lb-cols">${f.cols} cols</span>
+        <span class="lib-badge lb-size">${f.cat}</span>
+      </div>
+      <div class="lib-desc">${f.desc}</div>
+      <div class="lib-actions">
+        <button class="lib-btn-view" onclick="viewFile(${f.id})">👁 Ver contenido</button>
+        <button class="lib-btn-dl ${dlClass}" onclick="downloadFile(${f.id})">${dlText}</button>
+      </div>
+      ${adminExtra ? `<div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;">${adminExtra}</div>` : ''}
+    </div>`;
+  }).join('');
+}
+
+// ── ADMIN: TOGGLE DL PER FILE ──────────────────────────────────
+function toggleFileDl(id){
+  const f=library.find(x=>x.id===id);
+  if(!f)return;
+  f.dlEnabled=!f.dlEnabled;
+  renderLibrary();
+  showToast(f.dlEnabled?`🔓 Descarga habilitada para "${f.nombre}"`:`🔒 Descarga bloqueada para "${f.nombre}"`);
+}
+
+// ── ADMIN: DELETE FILE ─────────────────────────────────────────
+function deleteFile(id){
+  const f=library.find(x=>x.id===id);
+  if(!f||!confirm(`¿Eliminar "${f.nombre}"? Esta acción no se puede deshacer.`))return;
+  library=library.filter(x=>x.id!==id);
+  if(viewerFileIdx===id)closeViewer();
+  renderLibrary();
+  showToast(`🗑 "${f.nombre}" eliminado`);
+}
+
+// ── VIEW FILE ──────────────────────────────────────────────────
+function viewFile(id){
+  const f=library.find(x=>x.id===id);
+  if(!f||!f.wb){showToast('⚠️ Datos del archivo no disponibles en esta sesión. Vuelve a subir el archivo.');return;}
+  viewerWB=f.wb; viewerSheets=f.sheets; viewerFileIdx=id;
+  document.getElementById('viewerName').textContent=f.nombre;
+  document.getElementById('viewerMeta').textContent=`${f.sheets.length} hoja(s) · ${f.rows} filas · ${f.size} KB · ${f.fecha}`;
+  buildViewTabs();
+  renderViewSheet(0);
+  const vs=document.getElementById('viewer-section');
+  vs.classList.add('open');
+  vs.scrollIntoView({behavior:'smooth'});
+}
+
+function closeViewer(){
+  document.getElementById('viewer-section').classList.remove('open');
+  viewerWB=null; viewerSheets=[]; viewerFileIdx=-1;
+}
+
+function buildViewTabs(){
+  const tabs=document.getElementById('viewTabs');
+  tabs.innerHTML=viewerSheets.map((s,i)=>
+    `<button class="sheet-tab${i===0?' active':''}" onclick="renderViewSheet(${i});document.querySelectorAll('.sheet-tab').forEach((t,j)=>t.classList.toggle('active',j===${i}))">${s}</button>`
+  ).join('');
+}
+
+function renderViewSheet(idx){
+  const ws=viewerWB.Sheets[viewerSheets[idx]];
+  const data=XLSX.utils.sheet_to_json(ws,{header:1,defval:''});
+  if(!data.length){document.getElementById('viewHead').innerHTML='';document.getElementById('viewBody').innerHTML='<tr><td colspan="10" style="text-align:center;padding:2rem;color:#888">Hoja vacía</td></tr>';return;}
+  const headers=data[0];
+  const rows=data.slice(1).filter(r=>r.some(c=>c!==''));
+  document.getElementById('viewHead').innerHTML='<tr>'+headers.map(h=>`<th>${h||'—'}</th>`).join('')+'</tr>';
+  document.getElementById('viewBody').innerHTML=rows.slice(0,300).map(row=>
+    '<tr>'+headers.map((_,i)=>{const v=row[i]??'';const isN=v!==''&&!isNaN(parseFloat(v));return `<td class="${isN?'td-num':''}">${v}</td>`}).join('')+'</tr>'
+  ).join('');
+  // Summary
+  const numericCols=headers.map((h,i)=>{const nums=rows.map(r=>parseFloat(r[i])).filter(v=>!isNaN(v));return nums.length>rows.length*.25?{h,sum:nums.reduce((a,b)=>a+b,0),count:nums.length}:null}).filter(Boolean).slice(0,4);
+  document.getElementById('viewSummary').innerHTML=`
+    <div class="sum-card"><div class="sum-val">${rows.length}</div><div class="sum-lbl">Filas</div></div>
+    <div class="sum-card"><div class="sum-val">${headers.length}</div><div class="sum-lbl">Columnas</div></div>
+    ${numericCols.map(c=>`<div class="sum-card"><div class="sum-val">${c.sum.toLocaleString('es-PE',{maximumFractionDigits:2})}</div><div class="sum-lbl">Σ ${c.h}</div></div>`).join('')}
+  `;
+  // Export row — only if download allowed
+  const f=library.find(x=>x.id===viewerFileIdx);
+  const canDl=isAdmin||globalDlOpen||(f&&f.dlEnabled);
+  document.getElementById('viewExportRow').innerHTML=canDl?`
+    <button class="btn-accent" onclick="exportCSVViewer()">⬇ Exportar CSV</button>
+    <button class="btn-dark" onclick="window.print()">🖨 Imprimir</button>
+    <button class="btn-dark" onclick="copyJSONViewer()">📋 Copiar JSON</button>
+  `:`<div style="font-size:13px;color:var(--danger);padding:8px 14px;background:rgba(192,57,43,.08);border-radius:var(--radius);border:1px solid rgba(192,57,43,.2);">🔒 Descarga no habilitada. Solo el administrador puede activarla.</div>`;
+}
+
+function exportCSVViewer(){
+  if(!viewerWB)return;
+  const ws=viewerWB.Sheets[viewerSheets[0]];
+  const csv=XLSX.utils.sheet_to_csv(ws);
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+  const f=library.find(x=>x.id===viewerFileIdx);
+  a.download=(f?f.nombre:'archivo')+'.csv';
+  a.click();
+  showToast('✅ CSV exportado');
+}
+function copyJSONViewer(){
+  if(!viewerWB)return;
+  const ws=viewerWB.Sheets[viewerSheets[0]];
+  navigator.clipboard.writeText(JSON.stringify(XLSX.utils.sheet_to_json(ws),null,2)).then(()=>showToast('📋 JSON copiado'));
+}
+
+// ── DOWNLOAD FILE ──────────────────────────────────────────────
+function downloadFile(id){
+  const f=library.find(x=>x.id===id);
+  if(!f)return;
+  if(!isAdmin&&!globalDlOpen&&!f.dlEnabled){
+    showToast('🔒 Descarga no habilitada. Solicita acceso al administrador.');
+    return;
+  }
+  if(!f.wb){showToast('⚠️ Datos no disponibles. Vuelve a subir el archivo en esta sesión.');return;}
+  const out=XLSX.write(f.wb,{bookType:'xlsx',type:'array'});
+  const blob=new Blob([out],{type:'application/octet-stream'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download=f.file_name||f.nombre+'.xlsx';
+  a.click();
+  showToast(`⬇ Descargando "${f.nombre}"`);
+}
+
+// ── FORM ───────────────────────────────────────────────────────
+function submitForm(e){e.preventDefault();showToast('✅ Consulta enviada. Te contactaremos pronto.');}
+
+// ── TOAST ──────────────────────────────────────────────────────
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3500);
+}
+</script>
+
+
+</body></html>
